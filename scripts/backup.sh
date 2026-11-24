@@ -33,7 +33,10 @@ find "$BACKUP_DIR" -maxdepth 1 -name 'nusuk-keys-*.db.gz' -type f -mtime +"$KEEP
   | sed 's/^/[backup] pruned /' || true
 
 if command -v rclone >/dev/null 2>&1 && rclone listremotes 2>/dev/null | grep -qxF "$RCLONE_REMOTE"; then
-  rclone copy "$out" "${RCLONE_REMOTE}${R2_BUCKET}/" --s3-no-check-bucket
+  # --s3-no-head: after a PUT, rclone 1.60 (Ubuntu 24.04) re-reads the object with
+  # HEAD ?versionId=..., which R2 answers 501. The PUT carries Content-MD5, so R2
+  # still verifies the upload.
+  rclone copy "$out" "${RCLONE_REMOTE}${R2_BUCKET}/" --s3-no-check-bucket --s3-no-head
   log "uploaded to ${RCLONE_REMOTE}${R2_BUCKET}/"
 else
   log "WARNING: R2 remote '${RCLONE_REMOTE}' not configured; skipped upload. Local snapshot kept. Run 'rclone config' as deploy."
