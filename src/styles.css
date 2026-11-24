@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* "Focus flow": near-white + deep emerald by day, ink-green + mint by night. */
+:root {
+  --background: #f5f8f7;
+  --foreground: #0b1f1c;
+  --card: #ffffff;
+  --card-foreground: #0b1f1c;
+  --popover: #ffffff;
+  --popover-foreground: #0b1f1c;
+  --primary: #0f766e;
+  --primary-foreground: #ffffff;
+  --secondary: #e6f0ee;
+  --secondary-foreground: #0b3b36;
+  --muted: #edf2f1;
+  --muted-foreground: #5b6f6b;
+  --accent: #d5efe9;
+  --accent-foreground: #0b3b36;
+  --destructive: #c2362f;
+  --border: #dbe5e2;
+  --input: #cbd8d5;
+  --ring: #0f766e;
+  --sand: #0f766e;
+  /* Hero card: its own surface so dark mode isn't a bright mint slab. */
+  --hero: #0f766e;
+  --hero-foreground: #ffffff;
+  --hero-action: #ffffff;
+  --hero-action-foreground: #0f766e;
+  --radius: 1rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #07130f;
+    --foreground: #e3f1ed;
+    --card: #0f201b;
+    --card-foreground: #e3f1ed;
+    --popover: #132823;
+    --popover-foreground: #e3f1ed;
+    --primary: #2dd4bf;
+    --primary-foreground: #042420;
+    --secondary: #16302a;
+    --secondary-foreground: #e3f1ed;
+    --muted: #122823;
+    --muted-foreground: #8fa9a2;
+    --accent: #17352e;
+    --accent-foreground: #a7f3e4;
+    --destructive: #f87171;
+    --border: #1d3a33;
+    --input: #26473f;
+    --ring: #2dd4bf;
+    --sand: #2dd4bf;
+    --hero: #0e3b34;
+    --hero-foreground: #e6f4f1;
+    --hero-action: #2dd4bf;
+    --hero-action-foreground: #042420;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sand: var(--sand);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-hero-action: var(--hero-action);
+  --color-hero-action-foreground: var(--hero-action-foreground);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Manrope", "Noto Kufi Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100dvh;
+  }
+  html[lang="ar"] body,
+  html[lang="ur"] body {
+    font-family: "Noto Kufi Arabic", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@keyframes new-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--sand) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.is-new {
+  position: relative;
+  animation: new-pulse 2.6s ease-out infinite;
+}
+.is-new::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  inset-inline-end: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: var(--sand);
+  border: 2px solid var(--background);
+}
+
+.key-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-new {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}

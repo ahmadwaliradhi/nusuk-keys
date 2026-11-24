@@ -1,0 +1,11 @@
+node_modules
+dist
+.wrangler
+.dev.vars
+.tanstack
+*.log
+.DS_Store
+worker-configuration.d.ts
+.claude/settings.local.json
+.impeccable/
+.claude/.cc-writes

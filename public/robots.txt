@@ -1,0 +1,16 @@
+# Link-preview bots may read the page head and og.png; search engines stay out.
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: WhatsApp
+User-agent: Twitterbot
+User-agent: TelegramBot
+User-agent: LinkedInBot
+User-agent: Slackbot
+User-agent: Slackbot-LinkExpanding
+User-agent: Discordbot
+User-agent: Pinterestbot
+User-agent: redditbot
+Allow: /
+
+User-agent: *
+Disallow: /

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Nusuk Key</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-50:#f3fcf6;--green-100:#dcf3e6;--green-200:#bfe3cf;--green-700:#166a45;--green-600:#1b8354;
+  --n25:#fcfcfd;--n50:#f9fafb;--n100:#f3f4f6;--n200:#e5e7eb;--n300:#d2d6db;
+  --n400:#9da4ae;--n500:#6c737f;--n600:#4d5761;--n700:#384250;--n800:#1f2a37;--n900:#111927;
+  --radius-sm:.25rem;--radius-lg:1rem;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--n50);color:var(--n900);
+  font-family:"IBM Plex Sans Arabic",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.top{background:#fff;border-bottom:1px solid var(--n200)}
+.top-in{max-width:480px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;letter-spacing:-.01em;white-space:nowrap}
+.mark{width:24px;height:24px;border-radius:6px;background:var(--green-600);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1}
+.stat{font-size:12px;color:var(--n500);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0;text-align:right}
+.soal-link{position:relative;font-size:12px;font-weight:600;color:var(--green-700);background:var(--green-50);border:1px solid var(--green-200);
+  border-radius:6px;padding:5px 9px;text-decoration:none;white-space:nowrap;line-height:1.2}
+.soal-link:hover{background:var(--green-100)}
+.soal-link.is-new{animation:soalPulse 2.6s ease-out infinite}
+.soal-link.is-new::after{content:"";position:absolute;top:-3px;right:-3px;width:7px;height:7px;border-radius:50%;
+  background:var(--green-600);border:1.5px solid #fff}
+[dir="rtl"] .soal-link.is-new::after{right:auto;left:-3px}
+@keyframes soalPulse{0%{box-shadow:0 0 0 0 rgba(27,131,84,.36)}70%{box-shadow:0 0 0 7px rgba(27,131,84,0)}100%{box-shadow:0 0 0 0 rgba(27,131,84,0)}}
+.bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--n200);
+  padding-top:env(safe-area-inset-top)}
+.bar-in{max-width:480px;margin:0 auto;padding:8px 16px 9px;display:flex;flex-direction:column;gap:7px}
+.search-row{display:flex;align-items:center;gap:8px}
+.search{flex:1;min-width:0;height:34px;background:#fff;color:var(--n900);border:2px solid var(--n900);
+  border-radius:var(--radius-sm);padding:0 10px;outline:none;font-family:inherit;font-size:13px}
+.search::placeholder{color:var(--n500)}
+.search:focus{box-shadow:0 0 0 3px var(--n300)}
+.lang{height:34px;max-width:118px;border:2px solid var(--n900);border-radius:var(--radius-sm);background:#fff;
+  color:var(--n900);font-family:inherit;font-size:12px;font-weight:500;padding:0 4px;outline:none;cursor:pointer}
+.lang:focus{box-shadow:0 0 0 3px var(--n300)}
+.bar-row{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap}
+.bar-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+.btn-fill{font:inherit;font-size:12.5px;font-weight:600;color:#fff;background:var(--green-600);border:0;
+  border-radius:var(--radius-sm);padding:7px 13px;cursor:pointer;white-space:nowrap}
+.btn-fill:hover{background:var(--green-700)}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--n600);cursor:pointer;user-select:none}
+.toggle input{appearance:none;-webkit-appearance:none;margin:0;width:16px;height:16px;background:#fff;
+  border:2px solid var(--n300);border-radius:2px;position:relative;cursor:pointer;flex:0 0 auto}
+.toggle input:checked{background:var(--green-600);border-color:var(--green-600)}
+.toggle input:checked::after{content:"";position:absolute;left:3.5px;top:.5px;width:4px;height:8px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+main{max-width:480px;margin:0 auto;padding:12px 16px calc(28px + env(safe-area-inset-bottom))}
+.note{margin:0 0 10px;font-size:11.5px;color:var(--n500)}
+.status{margin:0 0 10px;font-size:11.5px;font-weight:500;color:var(--green-700)}
+.status[hidden]{display:none}
+@media print{.list{display:none!important}}
+.list{list-style:none;margin:0;padding:0;background:#fff;border:1px solid var(--n200);user-select:none;-webkit-user-select:none;
+  border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.row{display:grid;grid-template-columns:30px 26px minmax(0,1fr) auto;align-items:center;gap:8px;
+  padding:10px 14px;border-top:1px solid var(--n100)}
+.row:first-child{border-top:0}
+.row.used{background:var(--n50)}
+.num{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--n400);
+  text-align:right;font-variant-numeric:tabular-nums}
+.tick{width:20px;height:20px;border-radius:50%;border:2px solid var(--n300);background:#fff;color:transparent;
+  display:grid;place-items:center;padding:0;font-size:10px;line-height:1;cursor:pointer;transition:background .12s,border-color .12s}
+.tick:active{transform:scale(.94)}
+.row.used .tick{background:var(--green-600);border-color:var(--green-600);color:#fff}
+.k{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;color:var(--n900);
+  overflow-wrap:anywhere;direction:ltr;unicode-bidi:isolate}
+.row.used .k{color:var(--n400);text-decoration:line-through;text-decoration-thickness:1px}
+.row.used .num{color:var(--n300)}
+.acts{display:flex;align-items:center;gap:6px;direction:ltr}
+.act{font:inherit;font-size:12px;font-weight:500;color:var(--n600);background:none;border:0;border-radius:var(--radius-sm);
+  padding:8px 9px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.act:hover{background:var(--n100)}
+.act.open{background:var(--green-600);color:#fff;font-weight:600;padding:8px 13px}
+.act.open:hover{background:var(--green-700)}
+.more{display:block;width:100%;margin-top:10px;padding:11px;background:#fff;border:1px solid var(--n200);
+  border-radius:var(--radius-lg);color:var(--n700);font:inherit;font-size:12.5px;font-weight:500;cursor:pointer}
+.more:hover{background:var(--n100)}
+.more[hidden]{display:none}
+.foot-tools{margin-top:10px;text-align:center}
+.foot-tools[hidden]{display:none}
+.btn-link{font:inherit;font-size:12px;color:var(--n500);background:none;border:0;padding:6px 10px;cursor:pointer;text-decoration:underline}
+.btn-link:hover{color:var(--n800)}
+.empty{margin:0;padding:44px 0;text-align:center;color:var(--n500);font-size:13px}
+.empty[hidden]{display:none}
+.sheet{position:fixed;inset:0;z-index:40;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,25,39,.4)}
+.sheet[hidden]{display:none}
+.panel{width:100%;max-width:480px;background:#fff;border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.panel h2{margin:0;font-size:14.5px;font-weight:600}
+.hint{margin:3px 0 12px;font-size:12px;color:var(--n500)}
+textarea{width:100%;min-height:140px;background:#fff;color:var(--n900);border:2px solid var(--n900);
+  border-radius:var(--radius-sm);padding:10px 11px;resize:vertical;outline:none;direction:ltr;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7}
+textarea:focus{box-shadow:0 0 0 3px var(--n300)}
+.panel-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px}
+.msg{flex:1;font-size:11.5px;color:var(--n500);line-height:1.4}
+.primary{font:inherit;font-size:13px;font-weight:600;color:#fff;background:var(--green-600);border:0;
+  border-radius:var(--radius-sm);padding:10px 18px;cursor:pointer;white-space:nowrap}
+.primary:hover{background:var(--green-700)}
+.primary:disabled{opacity:.45;pointer-events:none}
+@media (min-width:640px){
+  .sheet{align-items:center}
+  .panel{border-radius:var(--radius-lg);max-width:440px;box-shadow:0 12px 32px rgba(16,24,40,.18)}
+}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;
+  transform:translate(-50%,0);display:flex;align-items:center;gap:9px;max-width:min(92vw,420px);
+  background:#fff;border:1px solid #bfe3cf;border-radius:14px;padding:10px 14px 10px 11px;
+  box-shadow:0 10px 28px rgba(16,24,40,.16);opacity:1;pointer-events:none;
+  font-size:12.5px;color:var(--n800);transition:opacity .16s ease,transform .16s ease}
+.toast[hidden]{display:none}
+.toast.show{animation:toastIn .18s ease-out}
+.toast.hide{opacity:0;transform:translate(-50%,10px)}
+@keyframes toastIn{from{transform:translate(-50%,12px)}to{transform:translate(-50%,0)}}
+.toast.warn{border-color:var(--n200)}
+.toast-ic{width:20px;height:20px;border-radius:50%;background:var(--green-600);color:#fff;
+  display:grid;place-items:center;font-size:11px;font-weight:700;flex:none;line-height:1}
+.toast.warn .toast-ic{background:var(--n400)}
+.toast-msg{line-height:1.35}
+.toast.has-act{pointer-events:auto}
+.toast-act{font:inherit;font-size:12px;font-weight:600;color:var(--green-700);background:var(--green-50);
+  border:1px solid var(--green-200);border-radius:var(--radius-sm);padding:4px 9px;cursor:pointer;white-space:nowrap;margin-left:4px}
+.toast-act:hover{background:var(--green-100)}
+@media (prefers-reduced-motion:reduce){.toast{transition:none;animation:none}.soal-link.is-new{animation:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <span class="brand"><span class="mark">N</span>Nusuk Key</span>
+    <span class="stat" id="stat"></span>
+  </div>
+</header>
+<div class="bar">
+  <div class="bar-in">
+    <div class="search-row">
+      <input class="search" id="q" type="search" autocomplete="off" spellcheck="false" data-i18n-ph="search">
+      <select class="lang" id="lang" aria-label="Language">
+        <option value="id">Indonesia</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="ms">Melayu</option>
+        <option value="tr">Türkçe</option>
+        <option value="ur">اردو</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+    <div class="bar-row">
+      <div class="bar-actions">
+        <button class="btn-fill" id="openImport" type="button" data-i18n="addKeys">Tambahkan kode</button>
+        <a class="soal-link" id="soalLink" data-aff="1" data-url="https://s.shopee.co.id/5VWXyZJP1y" href="/soal.php" data-i18n="answerKey">Kunci Jawaban</a>
+      </div>
+      <label class="toggle"><input type="checkbox" id="hideUsed"><span data-i18n="hideUsed">Sembunyikan dipakai</span></label>
+    </div>
+  </div>
+</div>
+<main>
+  <p class="note" data-i18n="note"></p>
+  <ul class="list" id="list"></ul>
+  <button class="more" id="more" type="button" hidden></button>
+  <p class="empty" id="empty" hidden></p>
+  <button class="more" id="retryBtn" type="button" data-i18n="retry" hidden>Coba lagi</button>
+  <div class="foot-tools" id="footTools" hidden>
+    <button class="btn-link" id="resetUsed" type="button"></button>
+  </div>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="panel-head">
+      <h2 id="sheetTitle" data-i18n="addKeys">Tambahkan kode</h2>
+      <button class="act" type="button" data-close data-i18n="close">Tutup</button>
+    </div>
+    <p class="hint" data-i18n="hint"></p>
+    <textarea id="ta" spellcheck="false" autocomplete="off" placeholder="NG-GArejMW3&#10;NG-a0N7K8xn&#10;NG-wf2kPgqb&#10;NG-SsKz8sr2&#10;NG-JbCRHDEi&#10;NG-9dlTBkP3&#10;..."></textarea>
+    <div class="panel-foot">
+      <span class="msg" id="msg"></span>
+      <button class="primary" id="saveBtn" type="button" data-i18n="save">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span class="toast-ic" aria-hidden="true">&#10003;</span>
+  <span class="toast-msg" id="toastMsg"></span>
+  <button class="toast-act" id="toastAct" type="button" hidden></button>
+</div>
+
+<script>window.__KT="32b89902babd95fefbffefa340581f7d";window.__KTS=1795495975;window.__AFF="https://s.shopee.co.id/5VWXyZJP1y";window.__AFF_N=5;</script>
+<script>
+(function () {
+  var USED_LS = 'nusukkey.used.v1';
+  var HIDE_LS = 'nusukkey.hideused.v1';
+  var LANG_LS = 'nusukkey.lang.v1';
+  var BASE = 'https://services.nusuk.sa/app/?p=27&id=';
+  var PAGE = 100;
+
+  var I18N = {
+    id: {
+      search: 'Cari kode', addKeys: 'Tambahkan kode', hideUsed: 'Sembunyikan dipakai',
+      note: 'Bisa tambah banyak kode sekaligus, satu per baris.',
+      copy: 'Salin', open: 'Buka', copied: 'Tersalin',
+      hint: 'Tempel banyak kode sekaligus, satu per baris. Tautan lengkap juga diterima; kode yang sudah ada dilewati.',
+      close: 'Tutup', save: 'Simpan', saving: 'Menyimpan...',
+      noReadable: 'Tidak ada kode yang bisa dibaca.', saveFailed: 'Gagal menyimpan.',
+      noKeys: 'Belum ada kode. Tekan Tambahkan kode untuk menambah.', noMatch: 'Tidak ada kode yang cocok.',
+      more: 'Muat {n} lagi · sisa {r}', statKeys: '{n} kode', statUsed: '{n} dipakai', statFiltered: '{a} dari {b}', statAvail: 'Sisa {a} dari {b}', answerKey: 'Kunci Jawaban', markedUsed: 'Ditandai terpakai', undo: 'Batalkan', markFailed: 'Gagal menyimpan status',
+      markUsed: 'Tandai sudah dipakai', unmarkUsed: 'Batalkan tanda', loadFailed: 'gagal memuat',
+      added: '{n} kode ditambahkan', noneNew: 'Tidak ada kode baru', dup: '{n} sudah ada', bad: '{n} tidak valid',
+      sync: 'Sinkron', syncing: 'Menyinkronkan\u2026', syncNew: '{n} kunci baru', syncNone: 'Tidak ada kunci baru', syncFail: 'Sinkron gagal',
+      retry: 'Coba lagi', resetUsed: 'Reset tanda dipakai ({n})', resetConfirm: 'Hapus semua tanda dipakai?', resetDone: 'Tanda dipakai direset'
+    },
+    en: {
+      search: 'Search keys', addKeys: 'Add keys', hideUsed: 'Hide used',
+      note: 'You can add many keys at once, one per line.',
+      copy: 'Copy', open: 'Open', copied: 'Copied',
+      hint: 'Paste many keys at once, one per line. Full links work too; keys already stored are skipped.',
+      close: 'Close', save: 'Save', saving: 'Saving...',
+      noReadable: 'No readable keys found.', saveFailed: 'Failed to save.',
+      noKeys: 'No keys yet. Tap Add keys to add some.', noMatch: 'No matching keys.',
+      more: 'Load {n} more · {r} left', statKeys: '{n} keys', statUsed: '{n} used', statFiltered: '{a} of {b}', statAvail: '{a} of {b} left', answerKey: 'Answer Key', markedUsed: 'Marked as used', undo: 'Undo', markFailed: 'Failed to save status',
+      markUsed: 'Mark as used', unmarkUsed: 'Unmark', loadFailed: 'failed to load',
+      added: '{n} keys added', noneNew: 'No new keys', dup: '{n} already stored', bad: '{n} invalid',
+      sync: 'Sync', syncing: 'Syncing\u2026', syncNew: '{n} new keys', syncNone: 'No new keys', syncFail: 'Sync failed',
+      retry: 'Try again', resetUsed: 'Reset used ({n})', resetConfirm: 'Clear all used marks?', resetDone: 'Used marks cleared'
+    },
+    ar: {
+      search: 'ابحث عن مفتاح', addKeys: 'إضافة مفاتيح', hideUsed: 'إخفاء المستخدمة',
+      note: 'يمكنك إضافة عدة مفاتيح دفعة واحدة، مفتاح في كل سطر.',
+      copy: 'نسخ', open: 'فتح', copied: 'تم النسخ',
+      hint: 'ألصق عدة مفاتيح دفعة واحدة، مفتاح في كل سطر. الروابط الكاملة مقبولة أيضًا، والمفاتيح الموجودة تُتجاهل.',
+      close: 'إغلاق', save: 'حفظ', saving: 'جارٍ الحفظ...',
+      noReadable: 'لا توجد مفاتيح صالحة.', saveFailed: 'تعذّر الحفظ.',
+      noKeys: 'لا توجد مفاتيح بعد. اضغط إضافة مفاتيح للإضافة.', noMatch: 'لا توجد مفاتيح مطابقة.',
+      more: 'تحميل {n} أخرى · بقي {r}', statKeys: '{n} مفتاح', statUsed: '{n} مستخدم', statFiltered: '{a} من {b}', statAvail: 'متبقي {a} من {b}', answerKey: 'مفتاح الإجابة', markedUsed: 'تم التحديد كمستخدم', undo: 'تراجع', markFailed: 'تعذّر حفظ الحالة',
+      markUsed: 'تحديد كمستخدم', unmarkUsed: 'إلغاء التحديد', loadFailed: 'تعذّر التحميل',
+      added: 'تمت إضافة {n} مفاتيح', noneNew: 'لا مفاتيح جديدة', dup: '{n} موجودة مسبقًا', bad: '{n} غير صالحة',
+      sync: 'مزامنة', syncing: 'جارٍ المزامنة\u2026', syncNew: '{n} مفاتيح جديدة', syncNone: 'لا مفاتيح جديدة', syncFail: 'فشلت المزامنة',
+      retry: 'إعادة المحاولة', resetUsed: 'إعادة تعيين المستخدم ({n})', resetConfirm: 'مسح جميع علامات الاستخدام؟', resetDone: 'تم مسح العلامات'
+    },
+    ms: {
+      search: 'Cari kunci', addKeys: 'Masuk kunci', hideUsed: 'Sembunyi yang dipakai',
+      note: 'Boleh masukkan banyak kunci sekali gus, satu setiap baris.',
+      copy: 'Salin', open: 'Buka', copied: 'Disalin',
+      hint: 'Tampal banyak kunci sekali gus, satu setiap baris. Pautan penuh juga diterima; kunci yang sudah ada dilangkau.',
+      close: 'Tutup', save: 'Simpan', saving: 'Menyimpan...',
+      noReadable: 'Tiada kunci yang boleh dibaca.', saveFailed: 'Gagal menyimpan.',
+      noKeys: 'Belum ada kunci. Tekan Masuk kunci untuk menambah.', noMatch: 'Tiada kunci yang sepadan.',
+      more: 'Muat {n} lagi · tinggal {r}', statKeys: '{n} kunci', statUsed: '{n} dipakai', statFiltered: '{a} daripada {b}', statAvail: 'Baki {a} daripada {b}', answerKey: 'Kunci Jawapan', markedUsed: 'Ditanda terpakai', undo: 'Batal', markFailed: 'Gagal menyimpan status',
+      markUsed: 'Tanda sudah dipakai', unmarkUsed: 'Batalkan tanda', loadFailed: 'gagal memuat',
+      added: '{n} kunci ditambah', noneNew: 'Tiada kunci baharu', dup: '{n} sudah ada', bad: '{n} tidak sah',
+      sync: 'Segerak', syncing: 'Menyegerakkan\u2026', syncNew: '{n} kunci baharu', syncNone: 'Tiada kunci baharu', syncFail: 'Segerak gagal',
+      retry: 'Cuba lagi', resetUsed: 'Set semula dipakai ({n})', resetConfirm: 'Padam semua tanda dipakai?', resetDone: 'Tanda dipakai dipadam'
+    },
+    tr: {
+      search: 'Anahtar ara', addKeys: 'Anahtar ekle', hideUsed: 'Kullanılanları gizle',
+      note: 'Birden fazla anahtarı tek seferde ekleyebilirsiniz, her satıra bir tane.',
+      copy: 'Kopyala', open: 'Aç', copied: 'Kopyalandı',
+      hint: 'Birden fazla anahtarı tek seferde yapıştırın, her satıra bir tane. Tam bağlantılar da kabul edilir; mevcut anahtarlar atlanır.',
+      close: 'Kapat', save: 'Kaydet', saving: 'Kaydediliyor...',
+      noReadable: 'Okunabilir anahtar yok.', saveFailed: 'Kaydedilemedi.',
+      noKeys: 'Henüz anahtar yok. Eklemek için Anahtar ekle\'ye dokunun.', noMatch: 'Eşleşen anahtar yok.',
+      more: '{n} tane daha yükle · {r} kaldı', statKeys: '{n} anahtar', statUsed: '{n} kullanıldı', statFiltered: '{a} / {b}', statAvail: 'Kalan {a} / {b}', answerKey: 'Cevap Anahtarı', markedUsed: 'Kullanıldı olarak işaretlendi', undo: 'Geri al', markFailed: 'Durum kaydedilemedi',
+      markUsed: 'Kullanıldı olarak işaretle', unmarkUsed: 'İşareti kaldır', loadFailed: 'yüklenemedi',
+      added: '{n} anahtar eklendi', noneNew: 'Yeni anahtar yok', dup: '{n} zaten var', bad: '{n} geçersiz',
+      sync: 'Eşitle', syncing: 'Eşitleniyor\u2026', syncNew: '{n} yeni anahtar', syncNone: 'Yeni anahtar yok', syncFail: 'Eşitleme başarısız',
+      retry: 'Tekrar dene', resetUsed: 'Kullanılanları sıfırla ({n})', resetConfirm: 'Tüm kullanılan işaretleri temizle?', resetDone: 'İşaretler temizlendi'
+    },
+    ur: {
+      search: 'چابی تلاش کریں', addKeys: 'چابیاں شامل کریں', hideUsed: 'استعمال شدہ چھپائیں',
+      note: 'ایک وقت میں کئی چابیاں شامل کریں، ہر سطر میں ایک۔',
+      copy: 'کاپی', open: 'کھولیں', copied: 'کاپی ہو گئی',
+      hint: 'ایک وقت میں کئی چابیاں چسپاں کریں، ہر سطر میں ایک۔ مکمل لنک بھی چلیں گے؛ موجود چابیاں چھوڑ دی جائیں گی۔',
+      close: 'بند کریں', save: 'محفوظ کریں', saving: 'محفوظ ہو رہا ہے...',
+      noReadable: 'کوئی قابلِ پڑھنے چابی نہیں ملی۔', saveFailed: 'محفوظ نہیں ہو سکا۔',
+      noKeys: 'ابھی کوئی چابی نہیں۔ شامل کرنے کے لیے چابیاں شامل کریں دبائیں۔', noMatch: 'کوئی مماثل چابی نہیں۔',
+      more: '{n} مزید لوڈ کریں · {r} باقی', statKeys: '{n} چابیاں', statUsed: '{n} استعمال شدہ', statFiltered: '{a} از {b}', statAvail: 'باقی {a} از {b}', answerKey: 'جوابات', markedUsed: 'استعمال شدہ نشان زد', undo: 'واپس لیں', markFailed: 'حالت محفوظ نہ ہو سکی',
+      markUsed: 'استعمال شدہ نشان زد کریں', unmarkUsed: 'نشان ہٹائیں', loadFailed: 'لوڈ نہیں ہوا',
+      added: '{n} چابیاں شامل ہوئیں', noneNew: 'کوئی نئی چابی نہیں', dup: '{n} پہلے سے موجود', bad: '{n} غلط',
+      sync: 'ہم آہنگ کریں', syncing: 'ہم آہنگ ہو رہا ہے\u2026', syncNew: '{n} نئی چابیاں', syncNone: 'کوئی نئی چابی نہیں', syncFail: 'ہم آہنگی ناکام',
+      retry: 'دوبارہ کوشش کریں', resetUsed: 'استعمال شدہ صاف کریں ({n})', resetConfirm: 'تمام استعمال شدہ نشانات ہٹائیں؟', resetDone: 'نشانات صاف ہو گئے'
+    },
+    fr: {
+      search: 'Rechercher une clé', addKeys: 'Ajouter des clés', hideUsed: 'Masquer les utilisées',
+      note: 'Vous pouvez ajouter plusieurs clés à la fois, une par ligne.',
+      copy: 'Copier', open: 'Ouvrir', copied: 'Copié',
+      hint: 'Collez plusieurs clés à la fois, une par ligne. Les liens complets sont acceptés ; les clés déjà présentes sont ignorées.',
+      close: 'Fermer', save: 'Enregistrer', saving: 'Enregistrement...',
+      noReadable: 'Aucune clé lisible.', saveFailed: "Échec de l'enregistrement.",
+      noKeys: "Aucune clé pour l'instant. Appuyez sur Ajouter des clés.", noMatch: 'Aucune clé correspondante.',
+      more: 'Charger {n} de plus · {r} restantes', statKeys: '{n} clés', statUsed: '{n} utilisées', statFiltered: '{a} sur {b}', statAvail: '{a} sur {b} restantes', answerKey: 'Corrigé', markedUsed: 'Marquée comme utilisée', undo: 'Annuler', markFailed: 'Échec de l’enregistrement',
+      markUsed: 'Marquer comme utilisée', unmarkUsed: 'Retirer la marque', loadFailed: 'échec du chargement',
+      added: '{n} clés ajoutées', noneNew: 'Aucune nouvelle clé', dup: '{n} déjà présentes', bad: '{n} invalides',
+      sync: 'Synchroniser', syncing: 'Synchronisation\u2026', syncNew: '{n} nouvelles clés', syncNone: 'Aucune nouvelle clé', syncFail: 'Échec de la synchronisation',
+      retry: 'Réessayer', resetUsed: 'Réinitialiser utilisées ({n})', resetConfirm: 'Effacer toutes les marques ?', resetDone: 'Marques effacées'
+    },
+    es: {
+      search: 'Buscar claves', addKeys: 'Añadir claves', hideUsed: 'Ocultar usadas',
+      note: 'Puedes añadir varias claves a la vez, una por línea.',
+      copy: 'Copiar', open: 'Abrir', copied: 'Copiado',
+      hint: 'Pega varias claves a la vez, una por línea. También se aceptan enlaces completos; las claves ya guardadas se omiten.',
+      close: 'Cerrar', save: 'Guardar', saving: 'Guardando...',
+      noReadable: 'No hay claves legibles.', saveFailed: 'No se pudo guardar.',
+      noKeys: 'Aún no hay claves. Pulsa Añadir claves.', noMatch: 'No hay claves coincidentes.',
+      more: 'Cargar {n} más · quedan {r}', statKeys: '{n} claves', statUsed: '{n} usadas', statFiltered: '{a} de {b}', statAvail: 'Quedan {a} de {b}', answerKey: 'Respuestas', markedUsed: 'Marcada como usada', undo: 'Deshacer', markFailed: 'Error al guardar estado',
+      markUsed: 'Marcar como usada', unmarkUsed: 'Quitar marca', loadFailed: 'no se pudo cargar',
+      added: '{n} claves añadidas', noneNew: 'No hay claves nuevas', dup: '{n} ya guardadas', bad: '{n} no válidas',
+      sync: 'Sincronizar', syncing: 'Sincronizando\u2026', syncNew: '{n} claves nuevas', syncNone: 'No hay claves nuevas', syncFail: 'Error al sincronizar',
+      retry: 'Reintentar', resetUsed: 'Restablecer usadas ({n})', resetConfirm: '¿Borrar todas las marcas?', resetDone: 'Marcas borradas'
+    }
+  };
+  var RTL = { ar: 1, ur: 1 };
+
+  var listEl = document.getElementById('list');
+  var statEl = document.getElementById('stat');
+  var emptyEl = document.getElementById('empty');
+  var hideEl = document.getElementById('hideUsed');
+  var sheet = document.getElementById('sheet');
+  var ta = document.getElementById('ta');
+  var msg = document.getElementById('msg');
+  var saveBtn = document.getElementById('saveBtn');
+  var qEl = document.getElementById('q');
+  var moreEl = document.getElementById('more');
+  var langEl = document.getElementById('lang');
+  var retryBtn = document.getElementById('retryBtn');
+  var footTools = document.getElementById('footTools');
+  var resetUsedBtn = document.getElementById('resetUsed');
+
+  var keys = [];
+  var totalPool = 0;
+  var totalFiltered = 0;
+  var hasMore = false;
+  var loading = false;
+  var searchTimer = null;
+  var reqSeq = 0;
+  var used = [];
+  var hideUsed = false;
+  var query = '';
+  var lang = 'id';
+
+  function nkProof(kt, ts) {
+    var s = kt + ':' + ts + ':nk26';
+    var h = 2166136261 >>> 0;
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    h ^= (h >>> 13);
+    h = Math.imul(h, 0x85EBCA6B) >>> 0;
+    h ^= (h >>> 16);
+    return ('00000000' + (h >>> 0).toString(16)).slice(-8);
+  }
+
+  var __T0 = Date.now();
+  function authHeaders(extra) {
+    var baseTs = window.__KTS || Math.floor(__T0 / 1000);
+    var ts = String(baseTs + Math.max(0, Math.floor((Date.now() - __T0) / 1000)));
+    var kt = window.__KT || '';
+    var h = { 'X-Key-Token': kt, 'X-Key-Ts': ts, 'X-Key-Proof': nkProof(kt, ts) };
+    if (extra) { Object.keys(extra).forEach(function (k) { h[k] = extra[k]; }); }
+    return h;
+  }
+
+  function deobf(b64, key) {
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) {
+      bytes[i] = bin.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+    }
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  function detectLang() {
+    try {
+      var savedLang = localStorage.getItem(LANG_LS);
+      if (savedLang && I18N[savedLang]) { return savedLang; }
+    } catch (e) {}
+    var nav = (navigator.language || navigator.userLanguage || 'id').toLowerCase();
+    var base = nav.split('-')[0];
+    if (I18N[base]) { return base; }
+    return 'en';
+  }
+
+  lang = detectLang();
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(USED_LS) || '[]');
+    if (Array.isArray(saved)) { used = saved.filter(function (v) { return typeof v === 'string'; }); }
+  } catch (e) { used = []; }
+
+  try { hideUsed = localStorage.getItem(HIDE_LS) === '1'; } catch (e) {}
+  hideEl.checked = hideUsed;
+
+  function t(key, vars) {
+    var dict = I18N[lang] || I18N.en;
+    var s = dict[key] || I18N.en[key] || key;
+    if (vars) {
+      Object.keys(vars).forEach(function (k) {
+        s = s.split('{' + k + '}').join(String(vars[k]));
+      });
+    }
+    return s;
+  }
+
+  function fmt(n) {
+    try { return n.toLocaleString(lang === 'ar' || lang === 'ur' ? 'en-US' : lang); }
+    catch (e) { return String(n); }
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = RTL[lang] ? 'rtl' : 'ltr';
+    langEl.value = lang;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-ph]'), function (el) {
+      el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+    });
+  }
+
+  function persistUsed() {
+    try { localStorage.setItem(USED_LS, JSON.stringify(used)); } catch (e) {}
+  }
+
+  function isUsed(k) { return used.indexOf(k) !== -1; }
+
+  function setUsed(k, nextUsed, withUndo) {
+    if (nextUsed) {
+      if (!isUsed(k)) { used.push(k); }
+    } else {
+      used = used.filter(function (x) { return x !== k; });
+    }
+    persistUsed();
+    render();
+    if (withUndo && nextUsed) {
+      toast(t('markedUsed'), false, t('undo'), function () {
+        setUsed(k, false, false);
+      }, 5000);
+    }
+  }
+
+  function track(name) {
+    try {
+      var body = 'e=' + encodeURIComponent(name);
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('?action=event&t=' + Date.now(), new Blob([body], { type: 'application/x-www-form-urlencoded' }));
+        return;
+      }
+      fetch('?action=event', {
+        method: 'POST', credentials: 'same-origin', keepalive: true,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Key-Token': window.__KT || '' },
+        body: body
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  var SOAL_SEEN_LS = 'nusukkey.soal_seen.v1';
+  var soalLinkEl = document.getElementById('soalLink');
+  var soalAff = soalLinkEl && soalLinkEl.getAttribute('data-aff') === '1';
+  var soalAffUrl = soalAff ? soalLinkEl.getAttribute('data-url') : '';
+  var soalMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var soalAffDone = false;
+  try { soalAffDone = document.cookie.split('; ').indexOf('nk_aff=1') !== -1; } catch (e) {}
+  if (soalLinkEl) {
+    try {
+      if (localStorage.getItem(SOAL_SEEN_LS) !== '1') { soalLinkEl.classList.add('is-new'); }
+    } catch (e) { soalLinkEl.classList.add('is-new'); }
+    soalLinkEl.addEventListener('click', function (e) {
+      soalLinkEl.classList.remove('is-new');
+      try { localStorage.setItem(SOAL_SEEN_LS, '1'); } catch (err) {}
+      track('soal');
+      if (!soalAff || soalAffDone || !soalAffUrl) { return; }
+      var w = null;
+      try { w = window.open(soalAffUrl, '_blank'); } catch (err) {}
+      if (w) {
+        try { w.opener = null; } catch (err) {}
+        try { document.cookie = 'nk_aff=1; path=/; max-age=86400; SameSite=Lax; Secure'; } catch (err) {}
+        soalAffDone = true;
+        track('aff_soal');
+        return;
+      }
+      if (soalMobile) {
+        try { document.cookie = 'nk_aff=1; path=/; max-age=86400; SameSite=Lax; Secure'; } catch (err) {}
+        soalAffDone = true;
+        track('aff_soal');
+        e.preventDefault();
+        window.location.assign('/soal.php?aff=1');
+      }
+    });
+  }
+
+  function fallbackCopy(text) {
+    var el = document.createElement('textarea');
+    el.value = text;
+    el.setAttribute('readonly', '');
+    el.style.position = 'fixed';
+    el.style.top = '-1000px';
+    document.body.appendChild(el);
+    el.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(el);
+  }
+
+  function copyText(text, btn) {
+    var done = function () {
+      var original = btn.textContent;
+      btn.textContent = t('copied');
+      setTimeout(function () { btn.textContent = original; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+      return;
+    }
+    fallbackCopy(text);
+    done();
+  }
+
+  function makeRow(k, n) {
+    var usedNow = isUsed(k);
+
+    var li = document.createElement('li');
+    li.className = 'row' + (usedNow ? ' used' : '');
+
+    var num = document.createElement('span');
+    num.className = 'num';
+    num.textContent = n;
+
+    var tick = document.createElement('button');
+    tick.type = 'button';
+    tick.className = 'tick';
+    tick.textContent = '✓';
+    tick.setAttribute('aria-pressed', usedNow ? 'true' : 'false');
+    tick.setAttribute('aria-label', usedNow ? t('unmarkUsed') : t('markUsed'));
+    tick.addEventListener('click', function () { setUsed(k, !usedNow, false); });
+
+    var span = document.createElement('span');
+    span.className = 'k';
+    span.textContent = k;
+
+    var acts = document.createElement('div');
+    acts.className = 'acts';
+
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'act';
+    copyBtn.textContent = t('copy');
+    copyBtn.addEventListener('click', function () { copyText(k, copyBtn); track('copy'); });
+
+    var openLink = document.createElement('a');
+    openLink.className = 'act open';
+    openLink.href = BASE + encodeURIComponent(k);
+    openLink.target = '_blank';
+    openLink.rel = 'noopener noreferrer';
+    openLink.textContent = t('open');
+    openLink.addEventListener('click', function (e) {
+      track('open');
+      if (!isUsed(k)) { setUsed(k, true, true); }
+      var affU = window.__AFF || '';
+      var openDone = false;
+      try { openDone = document.cookie.split('; ').indexOf('nk_aff_open=1') !== -1; } catch (err) {}
+      if (!affU || openDone) { return; }
+      var OPEN_N_LS = 'nusukkey.open_n.v1';
+      var n = 0;
+      try { n = (Number(localStorage.getItem(OPEN_N_LS) || 0) || 0) + 1; } catch (err) { n = 1; }
+      if (n < (window.__AFF_N || 5)) {
+        try { localStorage.setItem(OPEN_N_LS, String(n)); } catch (err) {}
+        return;
+      }
+      try { localStorage.setItem(OPEN_N_LS, '0'); } catch (err) {}
+      try { document.cookie = 'nk_aff_open=1; path=/; max-age=86400; SameSite=Lax; Secure'; } catch (err) {}
+      track('aff_open');
+      var aw = null;
+      try { aw = window.open(affU, '_blank'); } catch (err) {}
+      if (aw) { try { aw.opener = null; } catch (err) {} return; }
+      if (soalMobile) {
+        e.preventDefault();
+        var nw = null;
+        try { nw = window.open(openLink.href, '_blank'); } catch (err) {}
+        if (nw) { try { nw.opener = null; } catch (err) {} }
+        setTimeout(function () { window.location.href = affU; }, 150);
+      }
+    });
+
+    acts.appendChild(copyBtn);
+    acts.appendChild(openLink);
+    li.appendChild(num);
+    li.appendChild(tick);
+    li.appendChild(span);
+    li.appendChild(acts);
+    return li;
+  }
+
+  function visibleList() {
+    var out = [];
+    for (var i = 0; i < keys.length; i++) {
+      var item = keys[i];
+      if (hideUsed && isUsed(item.k)) { continue; }
+      out.push({ key: item.k, no: item.no });
+    }
+    return out;
+  }
+
+  var toastEl = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+  var toastAct = document.getElementById('toastAct');
+  var toastTimer = null;
+  var toastActHandler = null;
+  function hideToastNow() {
+    if (!toastEl) { return; }
+    toastEl.classList.add('hide');
+    toastTimer = setTimeout(function () {
+      toastEl.hidden = true;
+      toastEl.className = 'toast';
+      if (toastAct) { toastAct.hidden = true; }
+      toastActHandler = null;
+    }, 200);
+  }
+  if (toastAct) {
+    toastAct.addEventListener('click', function () {
+      var fn = toastActHandler;
+      if (toastTimer) { clearTimeout(toastTimer); }
+      hideToastNow();
+      if (fn) { fn(); }
+    });
+  }
+  function toast(text, warn, actLabel, actFn, duration) {
+    if (!toastEl || !text) { return; }
+    toastMsg.textContent = text;
+    var hasAct = !!(actLabel && actFn);
+    if (toastAct) {
+      toastAct.hidden = !hasAct;
+      toastAct.textContent = hasAct ? actLabel : '';
+    }
+    toastActHandler = hasAct ? actFn : null;
+    toastEl.className = 'toast' + (warn ? ' warn' : '') + (hasAct ? ' has-act' : '');
+    toastEl.hidden = false;
+    void toastEl.offsetWidth;
+    toastEl.classList.add('show');
+    if (toastTimer) { clearTimeout(toastTimer); }
+    toastTimer = setTimeout(hideToastNow, duration || 3400);
+  }
+
+  function render() {
+    var list = visibleList();
+
+    var frag = document.createDocumentFragment();
+    list.forEach(function (item) {
+      frag.appendChild(makeRow(item.key, String(item.no).padStart(2, '0')));
+    });
+    listEl.textContent = '';
+    listEl.appendChild(frag);
+    listEl.hidden = list.length === 0;
+
+    emptyEl.hidden = list.length > 0 || loading;
+    emptyEl.textContent = totalPool === 0 ? t('noKeys') : t('noMatch');
+
+    var rest = Math.max(0, totalFiltered - keys.length);
+    moreEl.hidden = !hasMore || rest <= 0;
+    if (hasMore && rest > 0) {
+      moreEl.textContent = t('more', { n: fmt(Math.min(PAGE, rest)), r: fmt(rest) });
+    }
+
+    if (query) {
+      statEl.textContent = t('statFiltered', { a: fmt(totalFiltered), b: fmt(totalPool) });
+    } else if (hideUsed) {
+      statEl.textContent = t('statAvail', { a: fmt(Math.max(0, totalPool - used.length)), b: fmt(totalPool) });
+    } else {
+      statEl.textContent = t('statKeys', { n: fmt(totalPool) });
+    }
+
+    if (footTools && resetUsedBtn) {
+      footTools.hidden = used.length === 0;
+      if (used.length > 0) {
+        resetUsedBtn.textContent = t('resetUsed', { n: fmt(used.length) });
+      }
+    }
+  }
+
+  function refreshToken() {
+    return fetch('?action=token&t=' + Date.now(), { cache: 'no-store', credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) { throw new Error('token'); } return r.json(); })
+      .then(function (d) {
+        if (d && d.kt) {
+          window.__KT = d.kt;
+          window.__KTS = d.kts || Math.floor(Date.now() / 1000);
+          __T0 = Date.now();
+        }
+      });
+  }
+
+  function loadPage(append, autoDepth, retried) {
+    if (loading) { return; }
+    loading = true;
+    var mySeq = ++reqSeq;
+    var off = append ? keys.length : 0;
+    var url = '?action=get&offset=' + off + '&limit=' + PAGE + (query ? '&q=' + encodeURIComponent(query) : '') + '&t=' + Date.now();
+    fetch(url, { cache: 'no-store', credentials: 'same-origin', headers: authHeaders() })
+      .then(function (r) {
+        if (r.status === 403 && !retried) {
+          loading = false;
+          return refreshToken().then(function () { loadPage(append, autoDepth, true); });
+        }
+        if (r.status === 429 || r.status === 403) { throw new Error('blocked'); }
+        return r.json();
+      })
+      .then(function (env) {
+        if (!env) { return; }
+        loading = false;
+        if (mySeq !== reqSeq) { return; }
+        var data = (env && env.d) ? deobf(env.d, window.__KT || '') : env;
+        var items = Array.isArray(data.items) ? data.items : [];
+        totalPool = Number(data.total || 0);
+        totalFiltered = Number(data.filtered || 0);
+        keys = append ? keys.concat(items) : items;
+        hasMore = keys.length < totalFiltered;
+        if (retryBtn) { retryBtn.hidden = true; }
+        render();
+        if (hideUsed && hasMore && visibleList().length < 20 && (autoDepth || 0) < 3) {
+          loadPage(true, (autoDepth || 0) + 1);
+        }
+      })
+      .catch(function () {
+        loading = false;
+        if (mySeq !== reqSeq) { return; }
+        statEl.textContent = t('loadFailed');
+        if (retryBtn) { retryBtn.hidden = false; }
+      });
+  }
+
+  function load() { loadPage(false, 0); }
+
+  function normalize(raw) {
+    var s = String(raw).trim();
+    if (!s) return null;
+    var m = s.match(/[?&]id=([A-Za-z0-9_-]{3,40})/);
+    if (m) return m[1];
+    if (/^[A-Za-z0-9_-]{5,40}$/.test(s)) return s;
+    return null;
+  }
+
+  function openSheet() {
+    sheet.hidden = false;
+    msg.textContent = '';
+    ta.focus();
+  }
+
+  function closeSheet() { sheet.hidden = true; }
+
+  document.getElementById('openImport').addEventListener('click', openSheet);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-close]'), function (el) {
+    el.addEventListener('click', closeSheet);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !sheet.hidden) { closeSheet(); }
+  });
+
+  qEl.addEventListener('input', function () {
+    var nextQ = qEl.value.trim().toLowerCase();
+    if (nextQ === query) { return; }
+    query = nextQ;
+    if (searchTimer) { clearTimeout(searchTimer); }
+    searchTimer = setTimeout(function () { loadPage(false, 0); }, 350);
+  });
+
+  hideEl.addEventListener('change', function () {
+    hideUsed = hideEl.checked;
+    try { localStorage.setItem(HIDE_LS, hideUsed ? '1' : '0'); } catch (e) {}
+    render();
+    if (hideUsed && hasMore && visibleList().length < 20) {
+      loadPage(true, 0);
+    }
+  });
+
+  moreEl.addEventListener('click', function () { loadPage(true, 0); });
+  if (retryBtn) {
+    retryBtn.addEventListener('click', function () {
+      retryBtn.hidden = true;
+      loadPage(keys.length > 0, 0);
+    });
+  }
+  if (resetUsedBtn) {
+    resetUsedBtn.addEventListener('click', function () {
+      if (!used.length) { return; }
+      if (!window.confirm(t('resetConfirm'))) { return; }
+      used = [];
+      persistUsed();
+      render();
+      toast(t('resetDone'));
+    });
+  }
+
+  langEl.addEventListener('change', function () {
+    lang = I18N[langEl.value] ? langEl.value : 'en';
+    try { localStorage.setItem(LANG_LS, lang); } catch (e) {}
+    applyLang();
+    render();
+  });
+
+  saveBtn.addEventListener('click', function () {
+    var lines = ta.value.split('\n');
+    var payload = [];
+    for (var i = 0; i < lines.length; i++) {
+      var k = normalize(lines[i]);
+      if (k) { payload.push(k); }
+    }
+    if (!payload.length) {
+      msg.textContent = t('noReadable');
+      return;
+    }
+    saveBtn.disabled = true;
+    msg.textContent = t('saving');
+    fetch('?action=save', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ keys: payload })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        saveBtn.disabled = false;
+        if (res.status !== 'success') {
+          msg.textContent = t('saveFailed');
+          return;
+        }
+        loadPage(false, 0);
+        ta.value = '';
+        closeSheet();
+        var parts = [res.added ? t('added', { n: fmt(res.added) }) : t('noneNew')];
+        if (res.skipped) { parts.push(t('dup', { n: fmt(res.skipped) })); }
+        if (res.invalid) { parts.push(t('bad', { n: fmt(res.invalid) })); }
+        toast(parts.join(' · '), !res.added);
+        track(payload.length > 1 ? 'bulk' : 'add');
+      })
+      .catch(function () {
+        saveBtn.disabled = false;
+        msg.textContent = t('saveFailed');
+      });
+  });
+
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && sheet.hidden && keys.length === 0) { load(); }
+  });
+
+  applyLang();
+  load();
+
+  try {
+    var GEO_LS = 'nusukkey.geo.v1';
+    var lastGeo = Number(localStorage.getItem(GEO_LS) || 0);
+    if (!lastGeo || Date.now() - lastGeo > 43200000) {
+      localStorage.setItem(GEO_LS, String(Date.now()));
+      fetch('?action=geo', { cache: 'no-store', credentials: 'same-origin', headers: authHeaders() }).catch(function () {});
+    }
+  } catch (e) {}
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"5509a60a8fe14373b95962a106f66372","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
