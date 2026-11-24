@@ -1,0 +1,11 @@
+[Unit]
+Description=Nusuk Keys nightly SQLite backup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+EnvironmentFile=-/srv/nusuk-keys/backup.env
+ExecStart=/srv/nusuk-keys/app/scripts/backup.sh

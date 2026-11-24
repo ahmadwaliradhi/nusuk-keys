@@ -1,12 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { clientIp } from "~/lib/client-ip";
 import {
+  ADD_RATE_MAX,
   MAX_BODY_BYTES,
   MAX_KEYS_PER_REQUEST,
   MAX_LIMIT,
   MAX_Q,
+  RATE_WINDOW_S,
   addKeys,
   listKeys,
 } from "~/lib/keys-db";
+import { createRateLimiter } from "~/lib/rate-limit";
+
+const addLimiter = createRateLimiter({ max: ADD_RATE_MAX, windowMs: RATE_WINDOW_S * 1000 });
 
 const json = (data: unknown, status = 200) =>
   Response.json(data, {
@@ -38,6 +44,8 @@ export const Route = createFileRoute("/api/keys")({
         }
       },
       POST: async ({ request }) => {
+        if (!addLimiter.hit(clientIp(request)))
+          return json({ status: "error", error: "rate" }, 429);
         const len = Number(request.headers.get("content-length") ?? 0);
         if (len > MAX_BODY_BYTES) return json({ status: "error", error: "too large" }, 413);
         const text = await request.text();

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { clientIp } from "~/lib/client-ip";
 import { listInvalidSince, markInvalid, normalizeKey, undoInvalid } from "~/lib/keys-db";
 
 const MAX_INVALID_BODY = 4096;
@@ -41,28 +42,13 @@ export const Route = createFileRoute("/api/keys/invalid")({
           if (body.undo === true) {
             const r = await undoInvalid(k);
             if (r.ok) return json({ status: "success", k: r.k, invalid: false });
-            const code =
-              r.error === "pinned"
-                ? 403
-                : r.error === "not found"
-                  ? 404
-                  : r.error === "unavailable"
-                    ? 503
-                    : 409;
+            const code = r.error === "pinned" ? 403 : r.error === "not found" ? 404 : 409;
             return json({ status: "error", error: r.error }, code);
           }
-          const ip = request.headers.get("cf-connecting-ip") || "unknown";
-          const r = await markInvalid(k, ip);
+          const r = await markInvalid(k, clientIp(request));
           if (r.ok)
             return json({ status: "success", k: r.k, invalid: true, invalidAt: r.invalidAt });
-          const code =
-            r.error === "pinned"
-              ? 403
-              : r.error === "not found"
-                ? 404
-                : r.error === "unavailable"
-                  ? 503
-                  : 429;
+          const code = r.error === "pinned" ? 403 : r.error === "not found" ? 404 : 429;
           return json({ status: "error", error: r.error }, code);
         } catch (e) {
           console.error("invalid failed", e);
