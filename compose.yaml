@@ -1,0 +1,58 @@
+name: nusuk-keys
+
+services:
+  app:
+    image: nusuk-keys-app:current
+    container_name: nusuk-app
+    restart: unless-stopped
+    # Run as the host deploy user so /srv/nusuk-keys/data stays owned by it.
+    # deploy.sh exports APP_UID/APP_GID; defaults suit a first user.
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      DB_PATH: /data/nusuk-keys.db
+    expose:
+      - "3000"
+    volumes:
+      - /srv/nusuk-keys/data:/data
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/api/keys?limit=1').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  caddy:
+    image: caddy:2
+    container_name: nusuk-caddy
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      # Set SITE_ADDRESS=http://nusuk-keys.web.id in .env to test over plain
+      # HTTP before DNS points here (no certificate attempt).
+      SITE_ADDRESS: ${SITE_ADDRESS:-nusuk-keys.web.id}
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    logging: *logging
+
+volumes:
+  caddy_data:
+  caddy_config:

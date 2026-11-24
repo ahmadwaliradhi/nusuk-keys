@@ -30,6 +30,7 @@ interface SaveResponse {
   added: number;
   skipped: number;
   invalid: number;
+  error?: string;
 }
 
 export function AddKeysDialog({ open, onOpenChange, t, fmt, onSaved }: Props) {
@@ -106,6 +107,7 @@ export function AddKeysDialog({ open, onOpenChange, t, fmt, onSaved }: Props) {
           body: JSON.stringify({ keys: payload.slice(i, i + CHUNK) }),
         });
         const res = (await r.json()) as SaveResponse;
+        if (r.status === 429 || res.error === "rate") throw new Error("rate");
         if (!r.ok || res.status !== "success") throw new Error("save");
         totals.added += res.added || 0;
         totals.skipped += res.skipped || 0;
@@ -117,11 +119,12 @@ export function AddKeysDialog({ open, onOpenChange, t, fmt, onSaved }: Props) {
       setMsg("");
       onOpenChange(false);
       onSaved(summary());
-    } catch {
+    } catch (e) {
+      const rate = e instanceof Error && e.message === "rate";
       if (done > 0) {
-        setMsg(t("savePartial", { n: fmt(done) }));
+        setMsg(t("savePartial", { n: fmt(done) }) + (rate ? ` ${t("saveRate")}` : ""));
         onSaved(summary());
-      } else setMsg(t("saveFailed"));
+      } else setMsg(t(rate ? "saveRate" : "saveFailed"));
     } finally {
       setSaving(false);
     }

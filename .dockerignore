@@ -1,0 +1,17 @@
+node_modules
+dist
+.data
+.git
+.scratch
+.claude
+.impeccable
+.tanstack
+*.mp4
+*.log
+.DS_Store
+demo
+reference
+docs
+data
+.env
+.env.*
